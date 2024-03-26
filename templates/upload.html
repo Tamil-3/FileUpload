@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Upload and Download</title>
+</head>
+<body>
+    <h2>Upload File</h2>
+    <form id="uploadForm" method="post" action="{% url 'upload_file' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="file">
+        <button type="submit">Upload</button>
+    </form>
+
+    {% if file %}
+        <h2>Uploaded File</h2>
+        <p>File Name: {{ file.name }}</p>
+        <p><a href="{% url 'download_file' file.id %}">Download</a></p>
+    {% endif %}
+</body>
+</html>
